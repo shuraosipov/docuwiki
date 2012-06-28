@@ -1,0 +1,261 @@
+
+<h2 class="sectionedit1"><a name="системные_требования_служб_удаленной_установки" id="системные_требования_служб_удаленной_установки">Системные требования служб удаленной установки</a></h2>
+<div class="level2">
+
+<p>
+Данный раздел описывает системные требования, предъявляемые к серверам служб удаленной установки RIS (Remote Installation Services), компьютерам-клиентам и сетевым адаптерам.
+</p>
+
+</div>
+
+<h5><a name="требования_к_службам_сети" id="требования_к_службам_сети">Требования к службам сети</a></h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> В сети имеется сервер <acronym title="Domain Name System">DNS</acronym> и что сеть построена на основе протокола TCP/IP. Не обязательно использовать версию <acronym title="Domain Name System">DNS</acronym>, произведенную корпорацией Майкрософт.</div>
+</li>
+<li class="level1"><div class="li"> В сети имеется авторизованный сервер <acronym title="Dynamic Host Configuration Protocol">DHCP</acronym>. Не обязательно использовать версию протокола <acronym title="Dynamic Host Configuration Protocol">DHCP</acronym>, произведенную корпорацией Майкрософт. Версия протокола <acronym title="Dynamic Host Configuration Protocol">DHCP</acronym> от другого изготовителя не обязательно должна быть авторизованной.</div>
+</li>
+<li class="level1"><div class="li"> Наличие Active Directory в сети.</div>
+</li>
+</ul>
+
+</div>
+
+<h5><a name="требования_к_оборудованию_серверов" id="требования_к_оборудованию_серверов">Требования к оборудованию серверов</a></h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Оборудование сервера должно отвечать минимальным требованиям устанавливаемого продукта семейства Windows Server 2003. Например, если устанавливается Windows Server 2003, Enterprise Edition, компьютер должен отвечать минимальным требованиям этого продукта. Дополнительные сведения см.в разделе Windows Server 2003, Enterprise Edition. Системные требования.</div>
+</li>
+<li class="level1"><div class="li"> Диск емкостью не менее 4 гигабайт для дерева папок сервера RIS.</div>
+</li>
+<li class="level1"><div class="li"> Сетевой адаптер, поддерживающий протокол TCP/IP, совместимый с Windows, со скоростью 10 или 100 Мбит/сек (рекомендуется 100 Мбит/сек). </div>
+</li>
+<li class="level1"><div class="li"> Сервер RIS не может быть многосетевым компьютером, на нем может быть установлен только один сетевой адаптер.</div>
+</li>
+</ul>
+
+</div>
+
+<h5><a name="требования_к_оборудованию_компьютеров-клиентов" id="требования_к_оборудованию_компьютеров-клиентов">Требования к оборудованию компьютеров-клиентов</a></h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Оборудование компьютера-клиента должно отвечать минимальным требованиям устанавливаемой операционной системы.</div>
+</li>
+<li class="level1"><div class="li"> Загрузочное ПЗУ PXE по протоколу <acronym title="Dynamic Host Configuration Protocol">DHCP</acronym> версии 1.00 или более поздней.</div>
+</li>
+</ul>
+
+</div>
+
+<h5><a name="поддерживаемые_сетевые_адаптеры_клиентов" id="поддерживаемые_сетевые_адаптеры_клиентов">Поддерживаемые сетевые адаптеры клиентов</a></h5>
+<div class="level5">
+
+<p>
+Чтобы получить список сетевых адаптеров, поддерживаемых RIS, запустите служебную программу Rbfg.exe. Дополнительные сведения см. в разделе Создание диска удаленной загрузки.
+</p>
+
+</div>
+
+<h5><a name="прочие_вопросы" id="прочие_вопросы">Прочие вопросы</a></h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> RIS требуют значительного дискового пространства. Для дерева папок RIS следует выделить целый раздел диска.</div>
+</li>
+<li class="level1"><div class="li"> RIS не могут быть установлены на один диск с системным или загрузочным томом.</div>
+</li>
+<li class="level1"><div class="li"> Том, на который устанавливаются RIS, должен быть отформатирован с использованием файловой системы NTFS.</div>
+</li>
+<li class="level1"><div class="li"> На данный момент RIS не поддерживают шифрованную файловую систему EFS (Encrypting File System). </div>
+</li>
+<li class="level1"><div class="li"> Распределенная файловая система DFS (Distributed File System) не поддерживается в качестве конечного расположения, однако службы RIS могут быть запущены на компьютере, на котором запущена DFS.</div>
+</li>
+<li class="level1"><div class="li"> Каталог Microsoft Windows содержит перечень систем и оборудования, которые прошли тщательную проверку на совместимость и стабильность работы в продуктах семейства Windows Server 2003. Каталог Microsoft Windows является источником сведений для служб технической поддержки Майкрософт о том, поддерживается ли использование конкретной системы с продуктами семейства Windows Server 2003. Дополнительные сведения о совместимости оборудования см. в разделе Вспомогательные ресурсы.</div>
+</li>
+</ul>
+
+<p>
+Во время первого запуска мастера будет выведен запрос для указания расположения дерева каталогов \RemoteInstall. Это расположение должно находиться на томе с файловой системой NTFS и не должно находиться на системном или загрузочном томе.
+</p>
+
+<p>
+<a href="http://technet.microsoft.com/ru-ru/library/cc737294(v=ws.10).aspx" class="urlextern" title="http://technet.microsoft.com/ru-ru/library/cc737294(v=ws.10).aspx"  rel="nofollow">http://technet.microsoft.com/ru-ru/library/cc737294(v=ws.10).aspx</a>
+</p>
+
+</div>
+<!-- EDIT1 SECTION "Системные требования служб удаленной установки" [1-5643] -->
+<h2 class="sectionedit2"><a name="установка_и_настройка_службы_удаленной_установки_в_windows_server_2003_standard" id="установка_и_настройка_службы_удаленной_установки_в_windows_server_2003_standard">Установка и настройка службы удаленной установки в Windows Server 2003 Standard</a></h2>
+<div class="level2">
+
+<p>
+<strong>Установка служб RIS с помощью мастера компонентов Windows.</strong>
+</p>
+<ul>
+<li class="level1"><div class="li"> <strong>Запуск установки службы удаленной установки</strong> </div>
+</li>
+</ul>
+
+<p>
+<em>Пуск - Панель инструментов - Установка и удаление программ - Установка компонентов Windows - Служба удаленной установки.</em>
+</p>
+<blockquote><div class="no">
+<blockquote><div class="no">
+Требуется установочный диск и права администратора, также потребуется перезагрузка.</div></blockquote>
+</div></blockquote>
+
+<p>
+<strong>Настройке RIS.</strong>
+</p>
+<ul>
+<li class="level1"><div class="li"> <strong>Запуск мастера Установки служб удаленной установки</strong></div>
+</li>
+</ul>
+
+<p>
+<em>Пуск Администрирование - Установка служб удаленной установки</em>
+</p>
+<blockquote><div class="no">
+<blockquote><div class="no">
+ Требуются права администратора.</div></blockquote>
+</div></blockquote>
+<ul>
+<li class="level1"><div class="li"> <strong>Мастер служб удаленной установки</strong></div>
+</li>
+</ul>
+
+<p>
+<em>Откроется окно Мастера служб удаленной установки, с описанием требований для установки. Жмем “Далее”.</em>
+</p>
+<ul>
+<li class="level1"><div class="li"> <strong>Местонахождение папки удаленной установки</strong></div>
+</li>
+</ul>
+
+<p>
+<em>Необходимо указать место, где создать папку удаленной установки. Вводим путь, жмем “Далее”.</em>
+</p>
+<blockquote><div class="no">
+<blockquote><div class="no">
+ Размещение папки удаленной установки должно соответствовать требованиям установки RIS.</div></blockquote>
+</div></blockquote>
+<ul>
+<li class="level1"><div class="li"> <strong>Исходные параметры</strong></div>
+</li>
+</ul>
+
+<p>
+<em>Настраиваем режим ответа на запросы клиентских компьютеров. Отмечаем галочки, жмем “Далее”.</em>
+</p>
+<blockquote><div class="no">
+<blockquote><div class="no">
+ Необходимо ответить пункт “Отвечать клиентским компьютерам, запрашивающим обслуживание”.<br/>
+ Для повышения безопасности можно отметить пункт “Не отвечать неизвестным клиентским компьютерам”.</div></blockquote>
+</div></blockquote>
+<ul>
+<li class="level1"><div class="li"> <strong>Местонахождение установочных файлов</strong>:</div>
+</li>
+</ul>
+
+<p>
+<em>Указываем расположение инсталляционных файлов (диск или папка), жмем “Далее”</em>
+</p>
+<ul>
+<li class="level1"><div class="li"> <strong>Имя папки образа установки Windows</strong></div>
+</li>
+</ul>
+
+<p>
+<em>Указываем имя папки на сервере RIS, в которую будут скопированы инсталляционные файлы, жмем “Далее”</em>
+</p>
+<blockquote><div class="no">
+<blockquote><div class="no">
+ Имя папки может быть любым. Например: PC-Kassa или Server</div></blockquote>
+</div></blockquote>
+<ul>
+<li class="level1"><div class="li"> <strong>Понятное описание и текст справки</strong></div>
+</li>
+</ul>
+
+<p>
+<em>Указываем описание установочного образа, которое будет отображаться при выборе дистрибутива для установки, жмем “Далее”</em>
+</p>
+<blockquote><div class="no">
+<blockquote><div class="no">
+Описание и текст лучше давать латиницей. Например: Dist-WXPPRo-PC-Kassa. В противном случае при установке описание и текст не будут видны!</div></blockquote>
+</div></blockquote>
+<ul>
+<li class="level1"><div class="li"> <strong>После проведения всех подготовительных процедур начнется процесс создания установочного образа. После завершения жмем “Готово.”</strong></div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <strong>Создание пользовательской учетной записи в Active Direcroy</strong></div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <strong>Добавление Имени узла сервер загрузки в параметры области <acronym title="Dynamic Host Configuration Protocol">DHCP</acronym> сервера</strong></div>
+</li>
+</ul>
+
+<p>
+<em>Пуск - <acronym title="Dynamic Host Configuration Protocol">DHCP</acronym> - Параметры области - Настроить параметры - 066 Имя узла сервера загрузки - %Имя нашего сервера%</em>
+</p>
+<blockquote><div class="no">
+<blockquote><div class="no">
+ Без добавления этой записи в параметры области <acronym title="Dynamic Host Configuration Protocol">DHCP</acronym> сервер клиент не сможет получить список образов для установки.</div></blockquote>
+</div></blockquote>
+<ul>
+<li class="level1"><div class="li"> <strong>Установка разрешений на добавление компьютера в домен</strong></div>
+</li>
+</ul>
+
+<p>
+<em>Пуск-Active Directory Users And Computers-%Наш домен%-Делегирование-Добавляем группу “Все”-Присоединение компьютера к домену-Готово</em>
+</p>
+<blockquote><div class="no">
+<blockquote><div class="no">
+Без делегирования на добавление компьютеров в домен удаленная установке не получится</div></blockquote>
+</div></blockquote>
+<ul>
+<li class="level1"><div class="li"> <strong>Установка разрешений на образы и папку установки</strong></div>
+</li>
+</ul>
+
+<p>
+<em>Пуск-Active Directory Users And Computers-%Наш сервер RIS%-Свойства-Удаленная установка-Дополнительные параметры-Образы-Свойства-Разрешения-%Установить полный доступ для группы “Everyone” (“Все”)%</em>
+</p>
+
+<p>
+<em>Мой компьютер - “Диск с папкой установки RIS-Папка RIS-Свойства-Доступ-%Установиить полный доступ для группы “Everyone” (“Все”)”
+</em>
+</p>
+<blockquote><div class="no">
+<blockquote><div class="no">
+ Без добавления разрешений клиентский компьютер не сможет увидеть установочный образы.</div></blockquote>
+</div></blockquote>
+
+</div>
+<!-- EDIT2 SECTION "Установка и настройка службы удаленной установки в Windows Server 2003 Standard" [5644-11227] -->
+<h3 class="sectionedit3"><a name="удаленная_установка_ос" id="удаленная_установка_ос">Удаленная установка ОС</a></h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <strong>Изменение способа загрузки</strong></div>
+</li>
+</ul>
+
+<p>
+<em>Изменяем способ загрузки на “Network boot”</em>
+</p>
+<blockquote><div class="no">
+<blockquote><div class="no">
+ Конечные компьютеры-клиенты должны либо поддерживать удаленную загрузку с ПЗУ PXE, либо должны быть загружены с гибкого диска удаленной загрузки, при этом они должны иметь поддерживаемый этим диском сетевой адаптер.</div></blockquote>
+</div></blockquote>
+<ul>
+<li class="level1"><div class="li"> <strong>После загрузки BIOS нажать на F12</strong></div>
+</li>
+</ul>
+
+<p>
+<em> Далее по шагам.
+</p>
+
+</div>
+<!-- EDIT3 SECTION "Удаленная установка ОС" [11228-] -->

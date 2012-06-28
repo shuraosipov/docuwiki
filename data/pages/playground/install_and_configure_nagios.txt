@@ -1,0 +1,194 @@
+=====Установка и настройка системы мониторинга Nagios в ОС FreeBSD 8.2====
+
+//Подразумевается, что в системе уже установлен и сконфигурирован веб-сервер [[Apache22]] и PHP 5.3.8//
+
+
+==Сборка nagios из стандартных портов с настройками по-умолчанию==
+
+<code>
+/usr/ports/net-mgmt/nagios/> make install clean
+</code>
+
+==Разрешаем запуск nagios==
+Вносим изменения в файл /etc/rc.conf, добавляем запись
+ <code>nagios_enable="YES"</code>
+
+==Добавление параметров nagios в apache22==
+
+В файл /usr/local/etc/apache22/httpd.conf добавить
+
+<code>
+ScriptAlias /nagios/cgi-bin /usr/local/www/nagios/cgi-bin/
+
+<Directory "/usr/local/www/nagios">
+    Options ExecCGI
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+    AuthName "Nagios Access"
+    AuthType Basic
+    AuthUserFile /usr/local/etc/nagios/htpasswd.users
+    Require valid-user
+</Directory>
+
+Alias /nagios /usr/local/www/nagios/
+
+<Directory "/usr/local/www/nagios/cgi-bin">
+    Options None
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+    AuthName "Nagios Access"
+    AuthType Basic
+    AuthUserFile /usr/local/etc/nagios/htpasswd.users
+    Require valid-user
+</Directory>
+</code>
+
+==Создание файла с паролями==
+<code>
+/usr/local/sbin/>htpasswd -c /usr/local/etc/nagios/htpasswd.users superuser
+New password: gfhjkm
+Re-type new password: gfhjkm
+Adding password for user superuser
+</code>
+
+Созданный нами пользователь seperuser будет проходит аутентификацию в браузере при подключении к nagios.
+
+==Конфигурационные файлы==
+
+<code>
+/usr/local/etc/nagios/>ls
+cgi.cfg-sample          nagios.cfg-sample       resource.cfg-sample
+htpasswd.users          objects
+</code>
+
+
+<code>
+
+/usr/local/etc/nagios/objects/>ls
+templates.cfg-sample          commands.cfg-sample     
+printer.cfg-sample       timeperiods.cfg-sample
+contacts.cfg-sample       switch.cfg-sample       
+localhost.cfg-sample    
+</code>
+
+Это примеры конфигурационных файлов nagios. Их следует переименовать, убрав приставку -sample.
+
+==Описание конфигурационных файлов==
+
+  * cgi.cfg - описывает доступ к web-интерфейсу nagios
+  * nagios.cfg - основной конфигурационный файл nagios
+  * resource.cfg - подключение дополнительных обработчиков
+  * commands.cfg - описания команд nagios и команд плагинов nagios
+  * contacts.cfg - описания контактов админов и пользователей nagios
+  * localhost.cfg - описание проверок хоста, где стоит сам Nagios
+  * printer.cfg - файл для проверки принтеров (я не использовал его в данной статье)
+  * switch.cfg - описание хостов и проверок сетевых устройств
+  * templates.cfg - шаблоны хостов и сервисов для различных устройств или ОС
+  * timeperiods.cfg - описания временных интервалов оповещений
+
+
+==cgi.cfg==
+В этом файле ничего не изменяем кроме следующих команд:
+<code>
+authorized_for_system_information="имя администратора nagios"
+authorized_for_configuration_information="имя администратора nagios"
+authorized_for_system_commands="имя администратора nagios"
+authorized_for_all_services="имя администратора nagios"
+authorized_for_all_hosts="имя администратора nagios"
+</code>
+
+==nagios.cfg==
+В этом файле необходимо явно прописать путь к настройкам мониторинга Windows серверов
+<code>
+# Definitions for monitoring a Windows machine
+cfg_file=/usr/local/etc/nagios/objects/windows.cfg
+cfg_file=/usr/local/etc/nagios/objects/windows_commands.cfg
+</code>
+
+
+
+
+==commands.cfg==
+**Все плагины для проверки состояния серверов лежат в /usr/local/libexec/nagios [[http://nagiosplugins.org/man|Описание плагинов]]**
+
+
+
+Файл с настройками мониторинга для localhost (в нашем случае это Freebsd.rst.local).
+
+Все настройки остались по-умолчанию. Добавлена одна проверка работоспособности SQUID:
+<code>
+# 'check_squid' command definition
+define command{
+        command_name    check_squid
+        command_line    $USER1$/check_tcp -H $HOSTADDRESS$ -p 3128 -w 100 -c 300
+        }
+</code>
+
+
+==localhost.cfg==
+**[[http://nagios.sourceforge.net/docs/3_0/objectdefinitions.html#host|Описание объектов и их свойства]]**
+
+В этом файле определяем имя хоста и имя группы:
+<code>
+define host{
+        use                     freebsd-server          ; Name of host template to use
+        host_name               freebsd-server          ; This host definition will inherit all variables that are defined
+        alias                   freebsd.rst.local       ; in (or inherited by) the freebsd-server host template definition.
+        address                 10.10.10.45
+        icon_image              freebsd40.png
+        statusmap_image         freebsd40.png
+        }
+        
+        
+define hostgroup{
+        hostgroup_name  freebsd-servers ; The name of the hostgroup
+        alias           FreeBSD Servers ; Long name of the group
+        members         freebsd-server  ; Comma separated list of hosts that belong to this group
+        }
+</code>
+
+И определяем службы, за которыми будет установлен мониторинг:
+
+<code>
+#define a service to check SQUID on the local machine
+
+define service{
+        use                             local-service
+        host_name                       freebsd-server
+        service_description             Squid
+        check_command                   check_squid
+        }
+</code>
+        
+==contacts.cfg==
+Даем контактную информацию администратора nagios
+
+<code>
+define contact{
+        contact_name                    shura                   ; Short name of user
+        use                             generic-contact         ; Inherit default values from generic-contact template (defined above)
+        alias                           shura                   ; Full name of user
+        email                           osipov@ooorst.ru        ; <<***** CHANGE THIS TO YOUR EMAIL ADDRESS ******
+        }
+        
+define contactgroup{
+        contactgroup_name       admins
+        alias                   Nagios Administrators
+        }
+
+</code>
+
+==templates.cfg==
+Описание периода оповещения, периода наблюдения для серверов, групп, служб.
+
+Изменения не вносились.
+
+
+
+
+==timeperiods.cfg==
+Описание временных периодов.
+
+Изменения не вносились.

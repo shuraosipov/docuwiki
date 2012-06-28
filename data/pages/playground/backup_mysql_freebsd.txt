@@ -1,0 +1,45 @@
+=====Резервное копирование баз MySQL=====
+Для запуска ежедневного копирования необходимо создать исполняемый файл:
+
+<code>
+/usr/local/etc/scripts/ee mysql_backup.sh
+
+/usr/local/etc/scripts/chmod +x mysql_backup.sh
+</code>
+
+Далее записываем в него следующий код:
+<code>
+/usr/local/bin/mysqldump -u%username% -p%password% %database_name% --default-character-set=cp1251> /backup/bases/`date +%Y-%m-%d`mysql_backup_log.txt
+
+#
+
+tar czfP /backup/`date +%Y-%m-%d`%database_name%.tgz /backup/bases
+
+#
+
+#
+
+find /backup -name "*.tgz" -mtime +7 -delete
+
+#
+
+find /backup -name "*.txt" -mtime +7 -delete
+
+#
+
+</code>
+
+
+Теперь добавляем в расписание выполнение этого файла каждую ночь:
+<code>
+ee /etc/crontab/>
+
+# Запускаем backup selena mysql в одиннадцать вечера.
+0       23      *       *       1-5     root    /usr/local/etc/scripts/mysql_backup_selena.sh
+
+# Запускаем backup otbprof mysql в одиннадцать вечера.
+0       23      *       *       1-5     root    /usr/local/etc/scripts/mysql_backup_otbprof.sh
+
+# Запускаем backup phonebook mysql в одиннадцать вечера.
+0       23      *       *       1-5     root    /usr/local/etc/scripts/mysql_backup_phonebook.sh
+</code>

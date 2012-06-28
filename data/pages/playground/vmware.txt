@@ -1,0 +1,2 @@
+[[http://www.navus.kz/vmware/parametri-seti-vmware-workstation.html|http://www.navus.kz/vmware/parametri-seti-vmware-workstation.html]]
+Полое описание сетевых подлючений в VMWare

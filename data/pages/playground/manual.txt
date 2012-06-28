@@ -1,0 +1,8 @@
+===== Руководства =====
+  - [[playground:install_and_configure_nagios|Установка и настройка системы мониторинга Nagios]]
+  - [[playground:backup_mysql_freebsd|Резервное копирование баз MySQL во FreeBSD]]
+  - [[playground:wsus|Установка и настройка WSUS 3.0]]
+  - [[playground:ris|Установка и настройка Remote Installation Service]]
+  - [[playground:vmware|Сетевые подключения в VMWareWorkstation]]
+  - [[playground:access_and_security|Назначение прав доступа на сетевые ресурсы]]
+  - [[playground:uralsib_kartscheta|Выгрузка заявок на открытие карт счетов]]

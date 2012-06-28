@@ -1,0 +1,4 @@
+===== Документация =====
+  - [[playground:account_policy|Политика учетных записей в ООО "РСТ"]]
+  - [[playground:group_policy|Описание групповых политик примененных в ООО "РСТ"]]
+  - [[playground:group_policy_order_of_application|Порядок применения групповых политик]]

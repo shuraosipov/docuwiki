@@ -1,0 +1,21 @@
+====== Команда PASS не выполнена ======
+>Описание:
+
+<file>
+После переноса почтового сервера OOORST.RU на новый хостинг 
+с почтовым ящиком filippova@ooorst.ru отказываются работать такие почтовые клиенты, как Outlook Express и Mozilla Thunderbird.
+(Через web-browser войти в почтовый ящик получается)
+</file>
+Предупреждение в  Mozilla Thunderbird
+
+{{:playground:1.png|}}
+
+Предупреждение в  Outlook Express
+
+{{:playground:2.png|}}
+
+>>Решение:
+<file>
+В настройках почтового ящика необходимо указать тип почтового клиента IMAP или POP3.
+</file>
+{{:playground:imap.png|}}

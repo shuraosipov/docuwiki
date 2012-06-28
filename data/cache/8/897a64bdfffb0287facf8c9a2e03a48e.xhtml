@@ -1,0 +1,253 @@
+
+<h2 class="sectionedit1"><a name="установка_и_настройка_системы_мониторинга_nagios_в_ос_freebsd_82" id="установка_и_настройка_системы_мониторинга_nagios_в_ос_freebsd_82">Установка и настройка системы мониторинга Nagios в ОС FreeBSD 8.2</a></h2>
+<div class="level2">
+
+<p>
+<em>Подразумевается, что в системе уже установлен и сконфигурирован веб-сервер <a href="/docuwiki/doku.php?id=playground:apache22" class="wikilink2" title="playground:apache22" rel="nofollow">Apache22</a> и <acronym title="Hypertext Preprocessor">PHP</acronym> 5.3.8</em>
+</p>
+
+</div>
+
+<h5><a name="сборка_nagios_из_стандартных_портов_с_настройками_по-умолчанию" id="сборка_nagios_из_стандартных_портов_с_настройками_по-умолчанию">Сборка nagios из стандартных портов с настройками по-умолчанию</a></h5>
+<div class="level5">
+<pre class="code">/usr/ports/net-mgmt/nagios/&gt; make install clean</pre>
+
+</div>
+
+<h5><a name="разрешаем_запуск_nagios" id="разрешаем_запуск_nagios">Разрешаем запуск nagios</a></h5>
+<div class="level5">
+
+<p>
+Вносим изменения в файл /etc/rc.conf, добавляем запись
+ 
+</p>
+<pre class="code">nagios_enable=&quot;YES&quot;</pre>
+
+</div>
+
+<h5><a name="добавление_параметров_nagios_в_apache22" id="добавление_параметров_nagios_в_apache22">Добавление параметров nagios в apache22</a></h5>
+<div class="level5">
+
+<p>
+В файл /usr/local/etc/apache22/httpd.conf добавить
+</p>
+<pre class="code">ScriptAlias /nagios/cgi-bin /usr/local/www/nagios/cgi-bin/
+
+&lt;Directory &quot;/usr/local/www/nagios&quot;&gt;
+    Options ExecCGI
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+    AuthName &quot;Nagios Access&quot;
+    AuthType Basic
+    AuthUserFile /usr/local/etc/nagios/htpasswd.users
+    Require valid-user
+&lt;/Directory&gt;
+
+Alias /nagios /usr/local/www/nagios/
+
+&lt;Directory &quot;/usr/local/www/nagios/cgi-bin&quot;&gt;
+    Options None
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+    AuthName &quot;Nagios Access&quot;
+    AuthType Basic
+    AuthUserFile /usr/local/etc/nagios/htpasswd.users
+    Require valid-user
+&lt;/Directory&gt;</pre>
+
+</div>
+
+<h5><a name="создание_файла_с_паролями" id="создание_файла_с_паролями">Создание файла с паролями</a></h5>
+<div class="level5">
+<pre class="code">/usr/local/sbin/&gt;htpasswd -c /usr/local/etc/nagios/htpasswd.users superuser
+New password: gfhjkm
+Re-type new password: gfhjkm
+Adding password for user superuser</pre>
+
+<p>
+Созданный нами пользователь seperuser будет проходит аутентификацию в браузере при подключении к nagios.
+</p>
+
+</div>
+
+<h5><a name="конфигурационные_файлы" id="конфигурационные_файлы">Конфигурационные файлы</a></h5>
+<div class="level5">
+<pre class="code">/usr/local/etc/nagios/&gt;ls
+cgi.cfg-sample          nagios.cfg-sample       resource.cfg-sample
+htpasswd.users          objects</pre>
+<pre class="code">
+/usr/local/etc/nagios/objects/&gt;ls
+templates.cfg-sample          commands.cfg-sample     
+printer.cfg-sample       timeperiods.cfg-sample
+contacts.cfg-sample       switch.cfg-sample       
+localhost.cfg-sample    </pre>
+
+<p>
+Это примеры конфигурационных файлов nagios. Их следует переименовать, убрав приставку -sample.
+</p>
+
+</div>
+
+<h5><a name="описание_конфигурационных_файлов" id="описание_конфигурационных_файлов">Описание конфигурационных файлов</a></h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> cgi.cfg - описывает доступ к web-интерфейсу nagios</div>
+</li>
+<li class="level1"><div class="li"> nagios.cfg - основной конфигурационный файл nagios</div>
+</li>
+<li class="level1"><div class="li"> resource.cfg - подключение дополнительных обработчиков</div>
+</li>
+<li class="level1"><div class="li"> commands.cfg - описания команд nagios и команд плагинов nagios</div>
+</li>
+<li class="level1"><div class="li"> contacts.cfg - описания контактов админов и пользователей nagios</div>
+</li>
+<li class="level1"><div class="li"> localhost.cfg - описание проверок хоста, где стоит сам Nagios</div>
+</li>
+<li class="level1"><div class="li"> printer.cfg - файл для проверки принтеров (я не использовал его в данной статье)</div>
+</li>
+<li class="level1"><div class="li"> switch.cfg - описание хостов и проверок сетевых устройств</div>
+</li>
+<li class="level1"><div class="li"> templates.cfg - шаблоны хостов и сервисов для различных устройств или ОС</div>
+</li>
+<li class="level1"><div class="li"> timeperiods.cfg - описания временных интервалов оповещений</div>
+</li>
+</ul>
+
+</div>
+
+<h5><a name="cgicfg" id="cgicfg">cgi.cfg</a></h5>
+<div class="level5">
+
+<p>
+В этом файле ничего не изменяем кроме следующих команд:
+</p>
+<pre class="code">authorized_for_system_information=&quot;имя администратора nagios&quot;
+authorized_for_configuration_information=&quot;имя администратора nagios&quot;
+authorized_for_system_commands=&quot;имя администратора nagios&quot;
+authorized_for_all_services=&quot;имя администратора nagios&quot;
+authorized_for_all_hosts=&quot;имя администратора nagios&quot;</pre>
+
+</div>
+
+<h5><a name="nagioscfg" id="nagioscfg">nagios.cfg</a></h5>
+<div class="level5">
+
+<p>
+В этом файле необходимо явно прописать путь к настройкам мониторинга Windows серверов
+</p>
+<pre class="code"># Definitions for monitoring a Windows machine
+cfg_file=/usr/local/etc/nagios/objects/windows.cfg
+cfg_file=/usr/local/etc/nagios/objects/windows_commands.cfg</pre>
+
+</div>
+
+<h5><a name="commandscfg" id="commandscfg">commands.cfg</a></h5>
+<div class="level5">
+
+<p>
+<strong>Все плагины для проверки состояния серверов лежат в /usr/local/libexec/nagios <a href="http://nagiosplugins.org/man" class="urlextern" title="http://nagiosplugins.org/man"  rel="nofollow">Описание плагинов</a></strong>
+</p>
+
+<p>
+Файл с настройками мониторинга для localhost (в нашем случае это Freebsd.rst.local).
+</p>
+
+<p>
+Все настройки остались по-умолчанию. Добавлена одна проверка работоспособности SQUID:
+</p>
+<pre class="code"># &#039;check_squid&#039; command definition
+define command{
+        command_name    check_squid
+        command_line    $USER1$/check_tcp -H $HOSTADDRESS$ -p 3128 -w 100 -c 300
+        }</pre>
+
+</div>
+
+<h5><a name="localhostcfg" id="localhostcfg">localhost.cfg</a></h5>
+<div class="level5">
+
+<p>
+<strong><a href="http://nagios.sourceforge.net/docs/3_0/objectdefinitions.html#host" class="urlextern" title="http://nagios.sourceforge.net/docs/3_0/objectdefinitions.html#host"  rel="nofollow">Описание объектов и их свойства</a></strong>
+</p>
+
+<p>
+В этом файле определяем имя хоста и имя группы:
+</p>
+<pre class="code">define host{
+        use                     freebsd-server          ; Name of host template to use
+        host_name               freebsd-server          ; This host definition will inherit all variables that are defined
+        alias                   freebsd.rst.local       ; in (or inherited by) the freebsd-server host template definition.
+        address                 10.10.10.45
+        icon_image              freebsd40.png
+        statusmap_image         freebsd40.png
+        }
+        
+        
+define hostgroup{
+        hostgroup_name  freebsd-servers ; The name of the hostgroup
+        alias           FreeBSD Servers ; Long name of the group
+        members         freebsd-server  ; Comma separated list of hosts that belong to this group
+        }</pre>
+
+<p>
+И определяем службы, за которыми будет установлен мониторинг:
+</p>
+<pre class="code">#define a service to check SQUID on the local machine
+
+define service{
+        use                             local-service
+        host_name                       freebsd-server
+        service_description             Squid
+        check_command                   check_squid
+        }</pre>
+
+</div>
+
+<h5><a name="contactscfg" id="contactscfg">contacts.cfg</a></h5>
+<div class="level5">
+
+<p>
+Даем контактную информацию администратора nagios
+</p>
+<pre class="code">define contact{
+        contact_name                    shura                   ; Short name of user
+        use                             generic-contact         ; Inherit default values from generic-contact template (defined above)
+        alias                           shura                   ; Full name of user
+        email                           osipov@ooorst.ru        ; &lt;&lt;***** CHANGE THIS TO YOUR EMAIL ADDRESS ******
+        }
+        
+define contactgroup{
+        contactgroup_name       admins
+        alias                   Nagios Administrators
+        }
+</pre>
+
+</div>
+
+<h5><a name="templatescfg" id="templatescfg">templates.cfg</a></h5>
+<div class="level5">
+
+<p>
+Описание периода оповещения, периода наблюдения для серверов, групп, служб.
+</p>
+
+<p>
+Изменения не вносились.
+</p>
+
+</div>
+
+<h5><a name="timeperiodscfg" id="timeperiodscfg">timeperiods.cfg</a></h5>
+<div class="level5">
+
+<p>
+Описание временных периодов.
+</p>
+
+<p>
+Изменения не вносились.
+</p>
+
+</div>

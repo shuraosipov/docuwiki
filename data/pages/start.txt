@@ -1,0 +1,5 @@
+=====База знаний=====
+
+  - [[playground:errors_and_faults|Ошибки и неиcправности]]
+  - [[playground:documentation|Документация]]
+  - [[playground:manual|Руководства]]

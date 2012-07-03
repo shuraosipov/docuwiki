@@ -1,21 +1,3 @@
-1340258291	127.0.0.1	E	playground:ris			
-1340259474	127.0.0.1	E	start			
-1340259519	127.0.0.1	C	playground:vmware		created	
-1340349815	127.0.0.1	E	start			
-1340349976	127.0.0.1	E	playground:ris			
-1340350026	127.0.0.1	E	playground:ris			
-1340354598	127.0.0.1	E	playground:ris			
-1340354788	127.0.0.1	E	start			
-1340354913	127.0.0.1	C	playground:account_policy		created	
-1340358551	127.0.0.1	E	playground:ris			
-1340361151	127.0.0.1	E	playground:ris			
-1340361603	127.0.0.1	E	playground:ris			
-1340363173	127.0.0.1	E	playground:ris		[Установка и службы удаленной установки в Windows Server 2003 Standard] 	
-1340363718	127.0.0.1	E	playground:ris			
-1340364347	127.0.0.1	E	playground:ris		[Установка и настройка службы удаленной установки в Windows Server 2003 Standard] 	
-1340364484	127.0.0.1	E	playground:ris			
-1340364756	127.0.0.1	E	playground:ris			
-1340364856	127.0.0.1	E	playground:ris		[Удаленная установка ОС] 	
 1340608562	127.0.0.1	E	start			
 1340609652	127.0.0.1	E	playground:account_policy			
 1340615864	127.0.0.1	E	playground:account_policy			
@@ -41,3 +23,8 @@
 1340859975	127.0.0.1	E	playground:manual			
 1340860473	127.0.0.1	E	playground:manual			
 1340861339	127.0.0.1	E	playground:uralsib_kartscheta			
+1341210286	127.0.0.1	E	playground:documentation			
+1341210739	127.0.0.1	C	playground:delete_old_backup		created	
+1341210903	127.0.0.1	E	playground:delete_old_backup			
+1341211263	127.0.0.1	E	playground:delete_old_backup			
+1341211316	127.0.0.1	E	playground:group_policy_order_of_application			

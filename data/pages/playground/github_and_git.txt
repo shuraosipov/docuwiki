@@ -1,0 +1,102 @@
+=====Основы работы с Git=====
+
+**Что решаем?** настраиваем распределенную систему управления версиями.
+
+**Для чего?** Наличие централизированного репозитория для хранения проектов и версий документов.
+
+=====Описание работы под Windows=====
+===Установка клиента msysgit для Windows:===
+Скачиваем msysgit по ссылке([[http://code.google.com/p/msysgit/downloads/list|http://code.google.com/p/msysgit/downloads/list]]). 
+
+Выбираем место для установки. В среднем установка занимает 30 минут.
+
+===Настройка SSH ключей:===
+Обязательное условие для возможности добавления данных в репозиторий наличие ключа.
+
+В консоли git создаем ключи SSH:
+<code>
+ssh-keygen -t rsa -C "email@example.com"
+</code>
+
+В качестве email указываем свой почтовый ящик. 
+
+На запрос "Enter file in which to save the key" просто нажимаем Enter. 
+
+При запросе пароля "Enter passphrase" и "Enter same passphrase again" просто нажимаем Enter. 
+
+В процессе генерации ключей в консоли будет выдаваться примерно следующая информация:
+ 
+Generating public/private rsa key pair.
+Enter file in which to save the key (/c/Documents and Settings/username/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /c/Documents and Settings/username/.ssh/id_rsa.
+Your public key has been saved in /c/Documents and Settings/username/.ssh/id_rsa.pub.
+The key fingerprint is:
+51:db:73:e9:31:9f:51:a6:7a:c5:3d:da:9c:35:8f:95 myemail@mail.ru
+ 
+После выполнения этой программы, в каталоге C:\Documents and Settings\username\.ssh будут лежать файлы id_rsa и id_rsa.pub, они нам пригодятся в дальнейшем.
+
+
+===Настройка учетной записи на github.com:===
+Создаем учетную запись на Github.com
+
+Переходим в раздел настройки учетной записи (Account Settings)
+
+В разделе SSH Keys требуется добавить новый ключ (Add SSH key).
+
+Открываем в любом редакторе файл id_rsa.pub и копируем его содержимое в поле Key. В поле Title можно указать имя компьютера.
+
+Дальше требуется подтвердить пароль учетной записи Github. Вводим пароль нажимаем Confirm Password.
+
+Все. Ключ успешно создан.
+
+===Создание нового репозитория на github===
+Создаем новый репозиторий (New repository)
+
+В поле Repository name даем название нашему проекту.
+
+Нажимаем Create repository.
+
+Далее откроется окно с настройками, которые необходимо внести в консоль git. Переходим в консоль git.
+
+===Настройка параметров Git:===
+
+В начале необходимо локальной системе git указать имя пользователя и пароль. Это делается двумя командами:
+
+Указываем имя пользователя и email. Параметр --global говорит, что эти данные действуют для всех наших проектов. 
+<code>
+git config --global user.name "Osipov Alex"
+git config --global user.email shuraosipov@gmail.com
+</code>
+
+Настроим текстовый редактор notepad++ для работы в качестве редактора по умолчанию.
+<code>
+git config --global core.editor "'C:/Program Files(x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"
+</code>
+
+
+Отправляем данные в репозиторий:
+
+Перейдем в каталог с файлами, которые мы хотим отправить на github
+
+<code>
+git init - создание git репозитория из каталога 
+git add . - добавление в репозиторий всех файлов и папок в текущем каталоге
+git commit - делает снимок текущего состояния файлов
+git remote add origin git:github.com:shuraosipov/selena.git - указываем репозиторий
+git push origin master - добавляем файлы в репозиторий
+</code>
+
+
+=====Ошибки, с которыми я встретился=====
+Изначально я отправлял на github файлы, используя GUI. После попытки отправить в репозиторий из консоли я получил следующую ошибку
+<code>
+$ git remote add origin git:github.com:shuraosipov/selena.git
+fatal: remote origin already exists.
+</code>
+
+Есть два варианта решения: заменить origin на другое слово, либое удалить origin командой:
+<code>
+git remote rm origin
+</code>

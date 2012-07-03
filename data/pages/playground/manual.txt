@@ -6,3 +6,4 @@
   - [[playground:vmware|Сетевые подключения в VMWareWorkstation]]
   - [[playground:access_and_security|Назначение прав доступа на сетевые ресурсы]]
   - [[playground:uralsib_kartscheta|Выгрузка заявок на открытие карт счетов]]
+  - [[playground:github_and_git|Основы работы с Git]]

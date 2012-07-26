@@ -1,5 +1,8 @@
 ===== Документация =====
+
+[[playground:rule|Правила оформления]]
   - [[playground:account_policy|Политика учетных записей в ООО "РСТ"]]
   - [[playground:group_policy|Описание групповых политик примененных в ООО "РСТ"]]
   - [[playground:group_policy_order_of_application|Порядок применения групповых политик]]
   - [[playground:delete_old_backup|Удаление старых архивов 1С в ООО "РСТ"]]
+  - [[playground:check_list|Контрольный лист установки узла сети ООО "РСТ"]]

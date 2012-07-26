@@ -1,4 +1,6 @@
 ===== Руководства =====
+
+[[playground:rule|Правила оформления]]
   - [[playground:install_and_configure_nagios|Установка и настройка системы мониторинга Nagios]]
   - [[playground:backup_mysql_freebsd|Резервное копирование баз MySQL во FreeBSD]]
   - [[playground:wsus|Установка и настройка WSUS 3.0]]
@@ -7,3 +9,4 @@
   - [[playground:access_and_security|Назначение прав доступа на сетевые ресурсы]]
   - [[playground:uralsib_kartscheta|Выгрузка заявок на открытие карт счетов]]
   - [[playground:github_and_git|Основы работы с Git]]
+  - [[playground:vpn_connect|VPN подключение к ООО РСТ]]

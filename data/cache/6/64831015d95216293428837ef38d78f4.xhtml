@@ -1,0 +1,33 @@
+
+<h2 class="sectionedit1"><a name="активные_аренды_динамическое_обновление_dns_в_ожидании_этот_адрес_не_доступен_для_аренды_на_сервер_dhcp" id="активные_аренды_динамическое_обновление_dns_в_ожидании_этот_адрес_не_доступен_для_аренды_на_сервер_dhcp">Активные аренды, динамическое обновление DNS в ожидании. Этот адрес не доступен для аренды на сервер DHCP</a></h2>
+<div class="level2">
+
+<p>
+Неожиданно в оснасте <acronym title="Dynamic Host Configuration Protocol">DHCP</acronym> изменились значки с вида монитора на монитор с пером, притом что запись есть и в <acronym title="Domain Name System">DNS</acronym> и в <acronym title="Dynamic Host Configuration Protocol">DHCP</acronym>.
+</p>
+
+<p>
+<a href="/docuwiki/lib/exe/detail.php?id=playground%3Adhcp_icon&amp;media=playground:image_66fcb664-1433-4f65-92af-661ed6074179.png" class="media" title="playground:image_66fcb664-1433-4f65-92af-661ed6074179.png"><img src="/docuwiki/lib/exe/fetch.php?media=playground:image_66fcb664-1433-4f65-92af-661ed6074179.png" class="media" alt="" /></a>
+</p>
+
+<p>
+Для решения этой проблемы выполните следующие действия:
+</p>
+<ul>
+<li class="level1"><div class="li"> Создайте зону обратного просмотра в <acronym title="Domain Name System">DNS</acronym> для подсети пострадавших аренды.</div>
+</li>
+<li class="level1"><div class="li"> Убедитесь, что оба зоне прямого просмотра и обратной зонами поиска позволяют динамических обновлений (либо защитой или без-Secure).</div>
+</li>
+<li class="level1"><div class="li"> Удалите запись для клиентских машин из адресной аренды на <acronym title="Dynamic Host Configuration Protocol">DHCP</acronym>-сервера.</div>
+</li>
+<li class="level1"><div class="li"> Удалите запись узла для клиентской машины с сервера <acronym title="Domain Name System">DNS</acronym>.</div>
+</li>
+<li class="level1"><div class="li"> Освободить IP-адрес клиента машину с помощью IPCONFIG / RELEASE.</div>
+</li>
+<li class="level1"><div class="li"> Перезагрузите клиентскую машину.</div>
+</li>
+<li class="level1"><div class="li"> Теперь Адрес аренды должны показать обычным значком (значок компьютера без ручки).</div>
+</li>
+</ul>
+
+</div>

@@ -1,34 +1,21 @@
-1340696051	127.0.0.1	E	playground:manual			
-1340698434	127.0.0.1	C	playground:access_and_security		created	
-1340698456	127.0.0.1	E	playground:access_and_security			
-1340698471	127.0.0.1	E	playground:manual			
-1340701719	127.0.0.1	E	playground:manual			
-1340701731	127.0.0.1	E	playground:manual			
-1340703473	127.0.0.1	C	playground:uralsib_kartscheta		created	
-1340703586	127.0.0.1	E	playground:uralsib_kartscheta			
-1340703660	127.0.0.1	E	playground:uralsib_kartscheta			
-1340706029	127.0.0.1	E	playground:documentation			
-1340706566	127.0.0.1	C	playground:group_policy_order_of_application		created	
-1340859975	127.0.0.1	E	playground:manual			
-1340860473	127.0.0.1	E	playground:manual			
-1340861339	127.0.0.1	E	playground:uralsib_kartscheta			
-1341210286	127.0.0.1	E	playground:documentation			
-1341210739	127.0.0.1	C	playground:delete_old_backup		created	
-1341210903	127.0.0.1	E	playground:delete_old_backup			
-1341211263	127.0.0.1	E	playground:delete_old_backup			
-1341211316	127.0.0.1	E	playground:group_policy_order_of_application			
-1341293430	127.0.0.1	E	playground:manual			
-1341293570	127.0.0.1	C	playground:github_and_git		created	
-1341294109	127.0.0.1	E	playground:github_and_git			
-1341294559	127.0.0.1	E	playground:github_and_git			
-1341295680	127.0.0.1	E	playground:github_and_git			
-1341296311	127.0.0.1	E	playground:github_and_git			
-1341296436	127.0.0.1	E	playground:github_and_git			
-1341296514	127.0.0.1	E	playground:github_and_git			
-1341296841	127.0.0.1	E	playground:github_and_git			
-1341297887	127.0.0.1	E	playground:github_and_git			
-1341298766	127.0.0.1	E	playground:github_and_git			
-1341298885	127.0.0.1	E	playground:github_and_git			
-1341299140	127.0.0.1	E	playground:github_and_git			
-1341299425	127.0.0.1	E	playground:github_and_git			
-1341299959	127.0.0.1	E	playground:github_and_git			
+1341385096	127.0.0.1	E	playground:documentation			
+1341385567	127.0.0.1	E	playground:vpn_connect			
+1341385953	127.0.0.1	E	playground:vpn_connect			
+1341467510	127.0.0.1	E	playground:documentation			
+1341467949	127.0.0.1	C	playground:check_list:контрольный_лист_установки_узла_сети_ооо_рст		created	
+1341467961	127.0.0.1	C	playground:check_list:контрольный_лист_установки_узла_сети_ооо_рст		created	
+1341467976	127.0.0.1	C	playground:check_list:контрольный_лист_установки_узла_сети_ооо_рст		created	
+1341467989	127.0.0.1	C	playground:check_list:контрольный_лист_установки_узла_сети_ооо_рст		created	
+1341467995	127.0.0.1	C	playground:check_list:контрольный_лист_установки_узла_сети_ооо_рст		created	
+1341468005	127.0.0.1	C	playground:check_list:контрольный_лист_установки_узла_сети_ооо_рст		created	
+1341468027	127.0.0.1	E	playground:documentation			
+1341468031	127.0.0.1	C	playground:check_list		created	
+1341468043	127.0.0.1	E	playground:check_list			
+1341548537	127.0.0.1	E	playground:account_policy			
+1341557436	127.0.0.1	E	playground:errors_and_faults			
+1341557637	127.0.0.1	C	playground:dhcp_icon		created	
+1342522805	127.0.0.1	E	playground:errors_and_faults			
+1342523606	127.0.0.1	C	playground:pfr_docs		created	
+1343277435	127.0.0.1	E	playground:errors_and_faults			
+1343277457	127.0.0.1	C	playground:sharp_5316e_u2		created	
+1343298797	127.0.0.1	E	playground:sharp_5316e_u2			
